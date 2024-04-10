@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    .list {
+        border: 1px solid black;
+        width: 90%;
+        height: 500px;
+        margin: auto;
+        background-color: rgb(20, 122, 211);
+        position: relative; /* Add position relative to the list */
+    }
+    .inp {
+        margin-left: 150px;
+        margin-top: 10px;
+    }
+    .inp input {
+        border: 1px solid black;
+        height: 40px;
+        border-radius: 2px;
+        width: 290px;
+    }
+    #add {
+        height: 35px;
+        background-color: cornflowerblue;
+        border: 0;
+    }
+    
+    .delete-btn {
+        position: absolute; /* Set position absolute for the delete button */
+        background-color: red;
+        margin-left: 190px;
+
+        
+    
+    }
+</style>
+</head>
+<body>
+    <div class="list">
+        <div class="inp">
+          <input type="text" placeholder="Enter a task" id="inpp">
+          <button type="button" id="add">ADD</button>
+        </div>
+        <div id="show">
+            <h1>To-Do List</h1>
+            <ul id="todo-list"></ul>
+        </div>
+    </div>
+<script>
+    document.getElementById("add").addEventListener("click", function() {
+        let inputValue = document.getElementById("inpp").value.trim();
+        if (inputValue === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        let todoList = document.getElementById("todo-list");
+        var listItem = document.createElement("li");
+        listItem.classList.add("kim"); // Adding class "kim" to the list item
+
+        let label = document.createElement("label");
+        label.textContent = inputValue;
+        listItem.appendChild(label);
+
+        todoList.appendChild(listItem);
+
+        // Create and append delete button
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.classList.add("delete-btn"); // Add delete button class
+        listItem.appendChild(deleteButton);
+
+        // Add click event listener to delete button
+        deleteButton.addEventListener("click", function() {
+            listItem.remove(); // Remove the corresponding list item when the delete button is clicked
+        });
+
+        // Clear input field after adding task
+        document.getElementById("inpp").value = "";
+    });
+</script>
+</body>
+</html>
+
+    
